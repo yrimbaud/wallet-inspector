@@ -17,7 +17,6 @@
             color: #fff;
         }
         .container {
-            background: rgba(255, 255, 255, 0.1);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -117,6 +116,18 @@
         #errorMessage {
             color: #000;
         }
+        .app-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .app-link:hover {
+            color: #2980b9;
+        }
     </style>
 </head>
 <body>
@@ -128,12 +139,12 @@
         <div id="result"></div>
         <div class="explanation">
             <h3>How it works and why it's useful:</h3>
-            <p>This tool generates a unique 6-digit code based on the text you enter. While it can work for all sorts of texts, it is particularly useful for wallet addresses. Here's why:</p>
-            <p>The 6-digit code provides a quick way to verify or identify a wallet without revealing the full address.</p>
-            <p>This tool can help protect against malicious software that tries to replace copied wallet addresses. By generating and comparing codes before and after copying an address, you can quickly spot if the address has been tampered with.</p>
+            <p>This tool generates a unique 6-digit code based on the text you enter.</p>
+            <p>It can help protect against malicious software that tries to replace copied wallet addresses. By generating and comparing codes before and after copying an address, you can quickly spot if the address has been tampered with.</p>
             <p>Instead of comparing long strings of characters, you can simply check if the 6-digit codes match.</p>
             <p>While designed for wallet addresses, this tool can be used for any text input where you want a quick verification method.</p>
         </div>
+        <a href="https://apps.apple.com/app/wallet-inspector/id6667109541" target="_blank" class="app-link">Generate Security Codes directly from the iOS app.</a>
     </div>
 
     <div id="errorModal" class="modal">
