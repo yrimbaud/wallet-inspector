@@ -3,6 +3,10 @@
 ## Presentation
 Wallet Inspector is a web-based tool designed to generate a unique 6-digit security code for wallet addresses. It helps protect users against malicious software that might attempt to replace copied wallet addresses by providing a quick and easy way to verify address integrity.
 
+The threat this tool addresses is known as "address spoofing" or "clipboard hijacking." Malicious actors create software that monitors your clipboard for cryptocurrency wallet addresses. When you copy a wallet address to make a transaction, this malware can swiftly replace it with the attacker's address. Since cryptocurrency transactions are irreversible, if you don't notice the switch and send your funds to the wrong address, your assets could be lost forever.
+
+Wallet Inspector provides a simple way to double-check that the address you're sending to is indeed the one you intended, adding an extra layer of security to your transactions.
+
 ## How to Use
 1. Visit the [Wallet Inspector website](https://yrimbaud.github.io/wallet-inspector/) or download the [iOS app](https://apps.apple.com/app/wallet-inspector/id6667109541)
 2. Enter the wallet address you want to verify in the input field.
