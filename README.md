@@ -10,11 +10,8 @@ Wallet Inspector provides a simple way to double-check that the address you're s
 ## How to Use
 1. Visit the [Wallet Inspector website](https://yrimbaud.github.io/wallet-inspector/) or download the [iOS app](https://apps.apple.com/app/wallet-inspector/id6667109541)
 2. Enter the wallet address you want to verify in the input field.
-3. Click the "Generate Security Code" button.
-4. Note down the 6-digit code generated.
-5. When you paste the address elsewhere, generate the code again and compare it with your noted code.
-
-Please ensure that you have a modern web browser for the best experience.
+3. Note down the 6-digit code generated.
+4. When you paste the address elsewhere, generate the code again and compare it with your noted code.
 
 ## Code Explanation
 The core of Wallet Inspector is the `generateSixDigitCode` function. Here's a line-by-line explanation of how it works:
