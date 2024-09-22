@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Inspector</title>
+    <style>
+        body, html {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            color: #fff;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        button {
+            background: #ffffff;
+            color: #000000;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        button:hover {
+            background: #e0e0e0;
+        }
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            min-height: 36px;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .explanation {
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #errorMessage {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wallet Inspector</h1>
+        <input type="text" id="walletAddress" placeholder="Enter wallet address">
+        <button onclick="generateCode()">Generate Security Code</button>
+        <div class="loader" id="loader"></div>
+        <div id="result"></div>
+        <div class="explanation">
+            <h3>How it works and why it's useful:</h3>
+            <p>This tool generates a unique 6-digit code based on the text you enter. While it can work for all sorts of texts, it is particularly useful for wallet addresses. Here's why:</p>
+            <p>The 6-digit code provides a quick way to verify or identify a wallet without revealing the full address.</p>
+            <p>This tool can help protect against malicious software that tries to replace copied wallet addresses. By generating and comparing codes before and after copying an address, you can quickly spot if the address has been tampered with.</p>
+            <p>Instead of comparing long strings of characters, you can simply check if the 6-digit codes match.</p>
+            <p>While designed for wallet addresses, this tool can be used for any text input where you want a quick verification method.</p>
+        </div>
+    </div>
+
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        function generateSixDigitCode(input) {
+            let hash = 5381;
+            for (let i = 0; i < input.length; i++) {
+                hash = (((hash << 5) + hash) + input.charCodeAt(i)) >>> 0;
+            }
+            return String(hash % 1000000).padStart(6, '0');
+        }
+
+        function generateCode() {
+            const address = document.getElementById('walletAddress').value;
+            const resultDiv = document.getElementById('result');
+            const loader = document.getElementById('loader');
+
+            if (!address) {
+                showModal('Please enter a wallet address.');
+                return;
+            }
+
+            resultDiv.textContent = '';
+            loader.style.display = 'block';
+
+            setTimeout(() => {
+                const code = generateSixDigitCode(address);
+                loader.style.display = 'none';
+                resultDiv.textContent = `Code: ${code}`;
+            }, 1500);
+        }
+
+        function showModal(message) {
+            const modal = document.getElementById('errorModal');
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('errorModal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('errorModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
