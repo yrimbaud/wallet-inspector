@@ -53,7 +53,7 @@ If you encounter any issues while using Wallet Inspector, please check the follo
 
 ## iPhone/iPad App
 For on-the-go convenience, check out our mobile app designed for iPhone and iPad (requires iOS 16.0 or later):
-[!Wallet Inspector on the App Store](https://xerus.app/assets/img/badge-app-store.svg)](https://apps.apple.com/app/wallet-inspector/id6667109541)
+[!Wallet Inspector on the App Store](https://apps.apple.com/app/wallet-inspector/id6667109541)
 
 ## Supporting The Project
 If you find this project beneficial and appreciate its contributions, you might consider offering your support. One of the ways you can do this is through a Bitcoin donation!
